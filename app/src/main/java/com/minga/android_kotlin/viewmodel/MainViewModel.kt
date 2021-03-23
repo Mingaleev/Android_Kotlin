@@ -1,4 +1,4 @@
-package com.minga.android_kotlin.ui.main
+package com.minga.android_kotlin.viewmodel
 
 import androidx.lifecycle.ViewModel
 

@@ -1,8 +1,8 @@
-package com.minga.android_kotlin
+package com.minga.android_kotlin.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.minga.android_kotlin.ui.main.MainFragment
+import com.minga.android_kotlin.R
 
 class MainActivity : AppCompatActivity() {
 
