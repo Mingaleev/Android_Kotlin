@@ -14,17 +14,18 @@ class MainViewModel(
 
     fun getLiveData(): LiveData<AppState> = liveDataToObserve
 
-    fun getWeatherFromLocalSource(){
+    fun getWeatherFromLocalSource() {
         getDataFromLocalSource()
     }
 
-    private fun getDataFromLocalSource(){
+    private fun getDataFromLocalSource() {
         liveDataToObserve.value = AppState.Loading
-        Thread{
+        Thread {
             sleep(1000)
             val data = repositoryImpl.getWeatherFromLocal()
             liveDataToObserve.postValue(AppState.Success(data))
-        }
+            sleep(1000) // для проверки работоспособности
+            liveDataToObserve.postValue(AppState.Error(null))
+        }.start()
     }
-
 }
