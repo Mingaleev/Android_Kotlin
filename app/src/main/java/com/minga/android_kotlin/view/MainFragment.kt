@@ -74,7 +74,7 @@ class MainFragment : Fragment() {
     }
 
     private fun setData(weatherData: Weather) {
-        binding.tvCity.text = weatherData.city
+        binding.tvCity.text = weatherData.city.cityName
         binding.tvCondition.text = weatherData.condition
         binding.tvTemperatureNow.text = weatherData.temperature.toString()
         binding.tvFeelsLike.text = weatherData.feels_like.toString()
