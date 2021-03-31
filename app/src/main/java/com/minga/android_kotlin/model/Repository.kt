@@ -4,5 +4,7 @@ interface Repository {
 
     fun getWeatherFromServer(): Weather
 
-    fun getWeatherFromLocal(): Weather
+    fun getWeatherFromLocalRus(): List<Weather>
+
+    fun getWeatherFromLocalWorld(): List<Weather>
 }
