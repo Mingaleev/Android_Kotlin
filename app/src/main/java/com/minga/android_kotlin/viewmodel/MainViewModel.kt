@@ -18,6 +18,8 @@ class MainViewModel(
 
     fun getWeatherFromLocalSourceWorld() = getDataFromLocalSource(isRussia = false)
 
+    fun getWeatherFromRemoteSource() = getDataFromLocalSource(isRussia = true)
+
     private fun getDataFromLocalSource(isRussia: Boolean) {
         liveDataToObserve.value = AppState.Loading
         Thread {

@@ -4,9 +4,9 @@ import androidx.fragment.app.Fragment
 
 class DetailsFragment : Fragment() {
 
-//    companion object {
-//        fun newInstance() = DetailsFragment()
-//    }
+    companion object {
+        fun newInstance() = DetailsFragment()
+    }
 //
 //    private var _binding: FragmentDetailsBinding? = null
 //
