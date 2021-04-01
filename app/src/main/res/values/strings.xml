@@ -2,4 +2,6 @@
     <string name="app_name">Android_kotlin</string>
     <string name="main_fragment_title_temperature">Температура сейчас</string>
     <string name="main_fragment_title_feels_like">Ощущается как</string>
+    <string name="error">Ошибка</string>
+    <string name="reload">Повторить</string>
 </resources>
