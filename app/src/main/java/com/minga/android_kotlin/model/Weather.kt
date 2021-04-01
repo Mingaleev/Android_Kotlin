@@ -1,11 +1,15 @@
 package com.minga.android_kotlin.model
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
+@Parcelize
 data class Weather(
     val city: City = getDefaultCity(),
     val condition: String = "Ясно",
     val temperature: Int = 25,
     val feels_like: Int = 30
-)
+) : Parcelable
 
 fun getDefaultCity() = City("Москва", 55.75222, 37.61556)
 
