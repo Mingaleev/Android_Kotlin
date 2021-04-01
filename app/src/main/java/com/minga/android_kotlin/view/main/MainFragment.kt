@@ -10,6 +10,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.Snackbar
 import com.minga.android_kotlin.R
 import com.minga.android_kotlin.databinding.FragmentMainBinding
+import com.minga.android_kotlin.model.Weather
+import com.minga.android_kotlin.view.details.DetailsFragment
 import com.minga.android_kotlin.viewmodel.AppState
 import com.minga.android_kotlin.viewmodel.MainViewModel
 
@@ -18,9 +20,21 @@ class MainFragment : Fragment() {
     private var _binding: FragmentMainBinding? = null
     private val binding get() = _binding!!
     private lateinit var viewModel: MainViewModel
-    private val adapter = MainFragmentAdapter()
     private var isDataSetRus: Boolean = true
 
+    private val adapter = MainFragmentAdapter(object : OnItemViewClickListener {
+        override fun onItemViewClick(weather: Weather) {
+            val manager = activity?.supportFragmentManager
+            if (manager != null) {
+                val bundle = Bundle()
+                bundle.putParcelable(DetailsFragment.BUNDLE_EXTRA, weather)
+                manager.beginTransaction()
+                    .add(R.id.itemContainer, DetailsFragment.newInstance(bundle))
+                    .addToBackStack("")
+                    .commitAllowingStateLoss()
+            }
+        }
+    })
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,7 +52,11 @@ class MainFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         viewModel.getLiveData().observe(viewLifecycleOwner, Observer { renderData(it) })
         viewModel.getWeatherFromLocalSourceRus()
+    }
 
+    override fun onDestroy() {
+        adapter.removeListener()
+        super.onDestroy()
     }
 
     private fun changeWeatherDataSet() {
@@ -74,7 +92,10 @@ class MainFragment : Fragment() {
                     .show()
             }
         }
+    }
 
+    interface OnItemViewClickListener {
+        fun onItemViewClick(weather: Weather)
     }
 
     companion object {
